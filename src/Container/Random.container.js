@@ -17,7 +17,7 @@ class Random extends React.Component {
   };
 
   onClick = () => {
-    let { randomList, input } = this.state;
+    const { randomList, input } = this.state;
     if(input !== '') {
       randomList.push(input);
       this.setState({
@@ -39,6 +39,9 @@ class Random extends React.Component {
           <text id={'random-list-length'}>
             {`Total object to be randomized: ${randomList.length}`}
           </text>
+          <div style={{ margin: 'auto', padding: 20 }}>
+            <button id={'submit-random'} onClick={this.randomize}>RANDOM</button>
+          </div>
         </div>
     );
   }

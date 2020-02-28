@@ -22,6 +22,12 @@ describe('Random', () => {
 
       expect(wrapper.find('#random-list-length').props().children).toEqual("Total object to be randomized: 0");
     });
+
+    it('should render one randomize button', () => {
+      const wrapper = shallow(<Random/>);
+
+      expect(wrapper.find('#submit-random')).toHaveLength(1);
+    });
   });
 
   describe('#onChange', () => {
