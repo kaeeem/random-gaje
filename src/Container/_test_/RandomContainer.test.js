@@ -98,4 +98,48 @@ describe('Random', () => {
       expect(actualList).toHaveLength(0);
     });
   });
+
+  describe('#randomize', () => {
+    it('should set random result state with randomized random list', () => {
+      const inputValue = 'ayam goreng';
+      const mockInputEvent = {
+        target: {
+          value: inputValue,
+        },
+      };
+      const wrapper = shallow(<Random/>);
+
+      wrapper.find('#input').simulate('change', mockInputEvent);
+      wrapper.find('#submit').simulate('click');
+      wrapper.find('#submit-random').simulate('click');
+      const actualResult = wrapper.state().randomResult;
+
+      expect(actualResult).not.toEqual('');
+    });
+
+    it('should show randomized value to result text', () => {
+      const inputValue = 'ayam goreng';
+      const mockInputEvent = {
+        target: {
+          value: inputValue,
+        },
+      };
+      const wrapper = shallow(<Random/>);
+
+      wrapper.find('#input').simulate('change', mockInputEvent);
+      wrapper.find('#submit').simulate('click');
+      wrapper.find('#submit-random').simulate('click');
+      const randomResult = wrapper.state().randomResult;
+
+      expect(wrapper.find('#random-result').props().children).toEqual('RESULT: ' + randomResult);
+    });
+
+    it('should not change result when random list is empty', () => {
+      const wrapper = shallow(<Random/>);
+      wrapper.find('#submit-random').simulate('click');
+      const randomResult = wrapper.state().randomResult;
+
+      expect(randomResult).toEqual('');
+    });
+  });
 });

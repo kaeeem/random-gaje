@@ -6,7 +6,6 @@ class Random extends React.Component {
     this.state = {
       randomList: [],
       input: '',
-      isLoading: false,
       randomResult: '',
     }
   }
@@ -27,8 +26,18 @@ class Random extends React.Component {
     }
   };
 
+  randomize = () => {
+    const { randomList } = this.state;
+    if(randomList.length > 0) {
+      const max = randomList.length;
+      const rand = Math.random() * (max);
+      const randomResult = randomList[Math.floor(rand)];
+      this.setState({randomResult});
+    }
+  };
+
   render() {
-    const { input, randomList } = this.state;
+    const { input, randomList, randomResult } = this.state;
     return (
         <div>
           <div style={{ margin: 'auto', padding: 20 }}>
@@ -41,6 +50,9 @@ class Random extends React.Component {
           </text>
           <div style={{ margin: 'auto', padding: 20 }}>
             <button id={'submit-random'} onClick={this.randomize}>RANDOM</button>
+          </div>
+          <div style={{ margin: 'auto', padding: 20 }}>
+            <h1 id={'random-result'}>{`RESULT: ${randomResult}`}</h1>
           </div>
         </div>
     );
