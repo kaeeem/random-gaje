@@ -10,6 +10,12 @@ describe('Random', () => {
 
       expect(wrapper.find('#input')).toHaveLength(1);
     });
+
+    it('should render one submit button', () => {
+      const wrapper = shallow(<Random/>);
+
+      expect(wrapper.find('#submit')).toHaveLength(1);
+    });
   });
 
   describe('#onChange', () => {
