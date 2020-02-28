@@ -11,10 +11,10 @@ class Random extends React.Component {
     }
   }
 
-  onChange(event) {
+  onChange = (event) => {
     const { value } = event.target;
     this.setState({input: value});
-  }
+  };
 
   render() {
     return (
