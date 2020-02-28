@@ -75,5 +75,21 @@ describe('Random', () => {
       expect(actualInputValue).toEqual('');
       expect(inputComponent.props().value).toEqual('');
     });
+
+    it('should not add input value to randomList state when input is empty', () => {
+      const inputValue = '';
+      const mockInputEvent = {
+        target: {
+          value: inputValue,
+        },
+      };
+      const wrapper = shallow(<Random/>);
+
+      wrapper.find('#input').simulate('change', mockInputEvent);
+      wrapper.find('#submit').simulate('click');
+      const actualList = wrapper.state().randomList;
+
+      expect(actualList).toHaveLength(0);
+    });
   });
 });

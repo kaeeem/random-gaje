@@ -18,11 +18,13 @@ class Random extends React.Component {
 
   onClick = () => {
     let { randomList, input } = this.state;
-    randomList.push(input);
-    this.setState({
-      input: '',
-      randomList,
-    });
+    if(input !== '') {
+      randomList.push(input);
+      this.setState({
+        input: '',
+        randomList,
+      });
+    }
   };
 
   render() {
