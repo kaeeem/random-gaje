@@ -46,10 +46,28 @@ describe('Random', () => {
 
       wrapper.find('#input').simulate('change', mockInputEvent);
       wrapper.find('#submit').simulate('click');
-      var actualList = wrapper.state().randomList;
+      const actualList = wrapper.state().randomList;
 
       expect(actualList).toHaveLength(1);
       expect(actualList[0]).toEqual(inputValue);
+    });
+
+    it('should reset input value', () => {
+      const inputValue = 'ayam goreng';
+      const mockInputEvent = {
+        target: {
+          value: inputValue,
+        },
+      };
+      const wrapper = shallow(<Random/>);
+      const inputComponent = wrapper.find('#input');
+
+      inputComponent.simulate('change', mockInputEvent);
+      wrapper.find('#submit').simulate('click');
+      const actualInputValue = wrapper.state().input;
+
+      expect(actualInputValue).toEqual('');
+      expect(inputComponent.props().value).toEqual('');
     });
   });
 });
