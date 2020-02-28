@@ -26,12 +26,17 @@ class Random extends React.Component {
   };
 
   render() {
-    const { input } = this.state;
+    const { input, randomList } = this.state;
     return (
         <div>
-          <input type={'text'} id={'input'} placeholder={'Input your thing'
-          + ' here'} name={'input'} value={input} onChange={this.onChange}/>
-          <button id={'submit'} onClick={this.onClick}>Submit</button>
+          <div style={{ margin: 'auto', padding: 20 }}>
+            <input type={'text'} id={'input'} placeholder={'Input your thing'
+            + ' here'} name={'input'} size={'20'} value={input} onChange={this.onChange}/>
+            <button id={'submit'} onClick={this.onClick}>Submit</button>
+          </div>
+          <text id={'random-list-length'}>
+            {`Total object to be randomized: ${randomList.length}`}
+          </text>
         </div>
     );
   }
