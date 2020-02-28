@@ -16,12 +16,20 @@ class Random extends React.Component {
     this.setState({input: value});
   };
 
+  onClick = () => {
+    let { randomList, input } = this.state;
+    randomList.push(input);
+    this.setState({
+      randomList,
+    });
+  };
+
   render() {
     return (
         <div>
           <input type={'text'} id={'input'} placeholder={'Input your thing'
           + ' here'} name={'input'} onChange={this.onChange}/>
-          <button id={'submit'}>Submit</button>
+          <button id={'submit'} onClick={this.onClick}>Submit</button>
         </div>
     );
   }

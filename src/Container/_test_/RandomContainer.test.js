@@ -19,7 +19,7 @@ describe('Random', () => {
   });
 
   describe('#onChange', () => {
-    it('should update the state with value given', () => {
+    it('should update input state with value given', () => {
       const inputValue = 'ayam goreng';
       const mockInputEvent = {
          target: {
@@ -31,6 +31,25 @@ describe('Random', () => {
       wrapper.find('#input').simulate('change', mockInputEvent);
 
       expect(wrapper.state().input).toEqual(inputValue);
+    });
+  });
+
+  describe('#onClick', () => {
+    it('should add input value to randomList state', () => {
+      const inputValue = 'ayam goreng';
+      const mockInputEvent = {
+        target: {
+          value: inputValue,
+        },
+      };
+      const wrapper = shallow(<Random/>);
+
+      wrapper.find('#input').simulate('change', mockInputEvent);
+      wrapper.find('#submit').simulate('click');
+      var actualList = wrapper.state().randomList;
+
+      expect(actualList).toHaveLength(1);
+      expect(actualList[0]).toEqual(inputValue);
     });
   });
 });
